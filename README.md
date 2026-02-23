@@ -91,6 +91,20 @@ Polymarket exposes three distinct API tiers, each serving different purposes:
 
 See [docs/API_ARCHITECTURE.md](docs/API_ARCHITECTURE.md) for the full breakdown of each tier, including WebSocket subscription format, HMAC signing flow, and the difference between NegRisk and standard CTF contracts.
 
+### Connection Pooling
+
+HTTP connection pooling eliminates the TCP/TLS handshake overhead on every request, which is critical when querying multiple token midpoints in a loop. The SDK pre-warms a `urllib3` connection pool with HMAC-safe patching.
+
+![Connection Pooling Impact on API Latency](docs/figures/api_latency_comparison.png)
+
+## Orderbook Analysis
+
+Spreads vary significantly by market type and volume. High-volume binary markets (e.g., "Will BTC hit $X?") typically have the tightest spreads, while low-volume and multi-outcome NegRisk markets show wider ranges.
+
+![Polymarket Orderbook Spreads by Market Type](docs/figures/orderbook_spread_by_type.png)
+
+See [docs/ORDERBOOK_ANALYSIS.md](docs/ORDERBOOK_ANALYSIS.md) for detailed spread analysis methodology and depth interpretation techniques.
+
 ## API Endpoints
 
 | Endpoint | Purpose |
