@@ -1,0 +1,6 @@
+py-clob-client>=0.17.0
+eth-account>=0.11.0
+web3>=6.0
+websockets>=12.0
+requests>=2.31
+python-dotenv>=1.0

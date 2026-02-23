@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+.DS_Store
+venv/
+.venv/
+dist/
+*.egg-info/
+positions.json
