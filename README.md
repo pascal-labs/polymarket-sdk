@@ -153,7 +153,8 @@ pip install -r requirements.txt
 
 - [market-maker-forensics](https://github.com/pascal-labs/market-maker-forensics) — Microstructure research using data collected through this SDK
 - [pulsefeed](https://github.com/pascal-labs/pulsefeed) — Multi-exchange price feeds that complement Polymarket market data
-- [event-probability-models](https://github.com/pascal-labs/event-probability-models) — Models that generate signals executed through this SDK
+- [btc-short-term-alpha](https://github.com/pascal-labs/btc-short-term-alpha) — BTC binary strategy executed through this SDK
+- [tweet-volume-ensemble](https://github.com/pascal-labs/tweet-volume-ensemble) — 6-model ensemble generating fair value estimates for market making
 
 ## License
 
