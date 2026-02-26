@@ -5,21 +5,13 @@ Uses py-clob-client for order placement
 
 import os
 import json
-from decimal import Decimal
 from datetime import datetime
 import requests
 
 # Connection pooling for faster HTTP requests
-from src.http_pool import pooled_get
+from .http_pool import pooled_get
 
-# Import VERBOSE flag from trading_bot (but handle if it's not available for standalone use)
-try:
-    import sys
-    from pathlib import Path
-    sys.path.insert(0, str(Path(__file__).parent.parent))
-    from src.trading_bot import VERBOSE
-except (ImportError, AttributeError):
-    VERBOSE = False  # Default to non-verbose if not available
+VERBOSE = False
 
 class PolymarketClient:
     def __init__(self, private_key=None, mode='paper'):
@@ -936,44 +928,3 @@ class PolymarketClient:
         except Exception as e:
             print(f"❌ Error fetching midpoint: {e}")
             return "0.00"
-
-# Window slugs
-WINDOWS = {
-    'W1': 'elon-musk-of-tweets-october-17-october-24',
-    'W2': 'elon-musk-of-tweets-october-21-october-28',
-    'W3': 'elon-musk-of-tweets-october-24-october-31'
-}
-
-if __name__ == "__main__":
-    print("="*80)
-    print("POLYMARKET CLIENT TEST")
-    print("="*80)
-
-    # Initialize in paper mode
-    client = PolymarketClient(mode='paper')
-
-    # Test: Fetch market prices
-    for window, slug in WINDOWS.items():
-        print(f"\n{window}: {slug}")
-        prices = client.get_market_prices(slug)
-
-        print(f"\nActive bins ({len([p for p in prices.values() if p['active']])} total):")
-        for bin_name, data in sorted(prices.items()):
-            if data['active'] and not data['closed']:
-                print(f"  {bin_name:<15} {data['yes_price']*100:>6.2f}¢  "
-                      f"(bid: {data['bid']*100:.2f}¢, ask: {data['ask']*100:.2f}¢)")
-
-    # Test: Place paper order
-    print("\n" + "="*80)
-    print("Testing order placement (PAPER MODE)")
-    print("="*80)
-
-    token_id = "fake_token_id"
-    order_id = client.place_order(
-        token_id=token_id,
-        side="BUY",
-        size=1.0,
-        order_type="MARKET"
-    )
-
-    print(f"\n✅ Test complete! Order ID: {order_id}")
