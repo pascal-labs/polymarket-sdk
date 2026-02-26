@@ -151,7 +151,7 @@ pip install -r requirements.txt
 
 ## Related Projects
 
-- [polymarket-research](https://github.com/pascal-labs/polymarket-research) — Microstructure research using data collected through this SDK
+- [market-maker-forensics](https://github.com/pascal-labs/market-maker-forensics) — Microstructure research using data collected through this SDK
 - [pulsefeed](https://github.com/pascal-labs/pulsefeed) — Multi-exchange price feeds that complement Polymarket market data
 - [event-probability-models](https://github.com/pascal-labs/event-probability-models) — Models that generate signals executed through this SDK
 
